@@ -1,5 +1,8 @@
-import 'package:animated_to/animated_to.dart';
+// 🐦 Flutter imports:
 import 'package:flutter/material.dart';
+
+// 📦 Package imports:
+import 'package:animated_to/animated_to.dart';
 import 'package:flutter_deck/flutter_deck.dart';
 import 'package:flutter_inappwebview/flutter_inappwebview.dart';
 import 'package:gap/gap.dart';
@@ -7,10 +10,9 @@ import 'package:gap/gap.dart';
 class FrameworkFigurePage extends StatefulWidget {
   const FrameworkFigurePage({super.key});
 
-  static FlutterDeckSlideWidget get slide =>
-      FrameworkFigurePage().withSlideConfiguration(
-        FlutterDeckSlideConfiguration(route: '/framework-figure'),
-      );
+  static FlutterDeckSlideWidget get slide => const FrameworkFigurePage().withSlideConfiguration(
+    const FlutterDeckSlideConfiguration(route: '/framework-figure'),
+  );
 
   @override
   State<FrameworkFigurePage> createState() => _FrameworkFigurePageState();
@@ -40,45 +42,37 @@ class _FrameworkFigurePageState extends State<FrameworkFigurePage> {
               spacing: 40,
               children: [
                 AnimatedTo.spring(
-                  globalKey: GlobalObjectKey('step0'),
-                  slidingFrom: Offset(0, 100),
+                  globalKey: const GlobalObjectKey('step0'),
+                  slidingFrom: const Offset(0, 100),
                   child: _WidgetTree(visibleConnector: _step < 1),
                 ),
                 if (_step >= 1)
                   AnimatedTo.spring(
-                    globalKey: GlobalObjectKey('step1'),
-                    slidingFrom: Offset(100, 0),
+                    globalKey: const GlobalObjectKey('step1'),
+                    slidingFrom: const Offset(100, 0),
                     child: Row(
                       mainAxisSize: MainAxisSize.min,
                       children: [
-                        Padding(
-                          padding: const EdgeInsets.only(top: 32),
+                        const Padding(
+                          padding: EdgeInsets.only(top: 32),
                           child: Icon(Icons.arrow_forward, size: 100),
                         ),
-                        Gap(40),
+                        const Gap(40),
                         GestureDetector(
-                          onTap: () {
-                            showDialog(
+                          onTap: () async {
+                            await showDialog(
                               context: context,
                               builder: (c) => Center(
                                 child: SizedBox(
-                                  width:
-                                      MediaQuery.of(context).size.width * 2 / 3,
-                                  height:
-                                      MediaQuery.of(context).size.height *
-                                      2 /
-                                      3,
+                                  width: MediaQuery.of(context).size.width * 2 / 3,
+                                  height: MediaQuery.of(context).size.height * 2 / 3,
                                   child: Stack(
                                     children: [
                                       InAppWebView(
                                         initialUrlRequest: URLRequest(
-                                          url: WebUri(
-                                            'https://chooyan.hashnode.dev/all-i-know-about-buildcontext',
-                                          ),
+                                          url: WebUri('https://chooyan.hashnode.dev/all-i-know-about-buildcontext'),
                                         ),
-                                        initialSettings: InAppWebViewSettings(
-                                          pageZoom: 1.5,
-                                        ),
+                                        initialSettings: InAppWebViewSettings(pageZoom: 1.5),
                                       ),
                                       Positioned(
                                         right: 20,
@@ -88,9 +82,7 @@ class _FrameworkFigurePageState extends State<FrameworkFigurePage> {
                                           child: SizedBox(
                                             width: 200,
                                             height: 200,
-                                            child: Image.asset(
-                                              'assets/article_qrcode.png',
-                                            ),
+                                            child: Image.asset('assets/article_qrcode.png'),
                                           ),
                                         ),
                                       ),
@@ -100,22 +92,22 @@ class _FrameworkFigurePageState extends State<FrameworkFigurePage> {
                               ),
                             );
                           },
-                          child: _ElementTree(),
+                          child: const _ElementTree(),
                         ),
                       ],
                     ),
                   ),
                 if (_step >= 2)
                   AnimatedTo.spring(
-                    globalKey: GlobalObjectKey('step2'),
-                    slidingFrom: Offset(100, 0),
+                    globalKey: const GlobalObjectKey('step2'),
+                    slidingFrom: const Offset(100, 0),
                     child: Stack(
                       clipBehavior: Clip.none,
                       children: [
-                        Row(
+                        const Row(
                           children: [
                             Padding(
-                              padding: const EdgeInsets.only(top: 32),
+                              padding: EdgeInsets.only(top: 32),
                               child: Icon(Icons.arrow_forward, size: 100),
                             ),
                             Gap(40),
@@ -149,16 +141,15 @@ class _FrameworkFigurePageState extends State<FrameworkFigurePage> {
                                     children: [
                                       Text(
                                         'Layout',
-                                        style: FlutterDeckTheme.of(
-                                          context,
-                                        ).textTheme.subtitle.copyWith(),
+                                        style: FlutterDeckTheme.of(context).textTheme.subtitle.copyWith(),
                                       ),
-                                      Icon(Icons.arrow_downward, size: 60),
+                                      const Icon(
+                                        Icons.arrow_downward,
+                                        size: 60,
+                                      ),
                                       Text(
                                         'Paint',
-                                        style: FlutterDeckTheme.of(
-                                          context,
-                                        ).textTheme.subtitle,
+                                        style: FlutterDeckTheme.of(context).textTheme.subtitle,
                                       ),
                                     ],
                                   ),
@@ -174,17 +165,17 @@ class _FrameworkFigurePageState extends State<FrameworkFigurePage> {
                   Padding(
                     padding: const EdgeInsets.only(left: 40),
                     child: AnimatedTo.spring(
-                      globalKey: GlobalObjectKey('step4'),
-                      slidingFrom: Offset(100, 0),
+                      globalKey: const GlobalObjectKey('step4'),
+                      slidingFrom: const Offset(100, 0),
                       child: Row(
                         mainAxisSize: MainAxisSize.min,
                         crossAxisAlignment: CrossAxisAlignment.end,
                         children: [
-                          Padding(
-                            padding: const EdgeInsets.only(top: 32),
+                          const Padding(
+                            padding: EdgeInsets.only(top: 32),
                             child: Icon(Icons.arrow_forward, size: 100),
                           ),
-                          Gap(40),
+                          const Gap(40),
                           Container(
                             decoration: BoxDecoration(
                               gradient: LinearGradient(
@@ -235,20 +226,20 @@ class _WidgetTree extends StatelessWidget {
       mainAxisSize: MainAxisSize.min,
       children: [
         Text('Widget', style: FlutterDeckTheme.of(context).textTheme.bodyLarge),
-        Gap(8),
-        _WidgetFigure(),
+        const Gap(8),
+        const _WidgetFigure(),
         AnimatedOpacity(
           duration: const Duration(milliseconds: 500),
           opacity: visibleConnector ? 1.0 : 0.0,
-          child: _Connector(),
+          child: const _Connector(),
         ),
-        _WidgetFigure(),
+        const _WidgetFigure(),
         AnimatedOpacity(
           duration: const Duration(milliseconds: 500),
           opacity: visibleConnector ? 1.0 : 0.0,
-          child: _Connector(),
+          child: const _Connector(),
         ),
-        _WidgetFigure(),
+        const _WidgetFigure(),
       ],
     );
   }
@@ -266,12 +257,12 @@ class _ElementTree extends StatelessWidget {
           'Element',
           style: FlutterDeckTheme.of(context).textTheme.bodyLarge,
         ),
-        Gap(8),
-        _ElementFigure(),
-        _Connector(),
-        _ElementFigure(),
-        _Connector(),
-        _ElementFigure(),
+        const Gap(8),
+        const _ElementFigure(),
+        const _Connector(),
+        const _ElementFigure(),
+        const _Connector(),
+        const _ElementFigure(),
       ],
     );
   }
@@ -289,10 +280,10 @@ class _RenderObjectTree extends StatelessWidget {
           'RenderObject',
           style: FlutterDeckTheme.of(context).textTheme.bodyLarge,
         ),
-        Gap(208),
-        _RenderObjectFigure(),
-        _Connector(),
-        _RenderObjectFigure(),
+        const Gap(208),
+        const _RenderObjectFigure(),
+        const _Connector(),
+        const _RenderObjectFigure(),
       ],
     );
   }

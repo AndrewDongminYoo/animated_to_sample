@@ -1,16 +1,19 @@
+// 🎯 Dart imports:
 import 'dart:async';
 
-import 'package:animated_to/animated_to.dart';
+// 🐦 Flutter imports:
 import 'package:flutter/material.dart';
+
+// 📦 Package imports:
+import 'package:animated_to/animated_to.dart';
 import 'package:flutter_deck/flutter_deck.dart';
 
 class ImplicitHandyPage extends StatefulWidget {
   const ImplicitHandyPage({super.key});
 
-  static FlutterDeckSlideWidget get slide =>
-      ImplicitHandyPage().withSlideConfiguration(
-        FlutterDeckSlideConfiguration(route: '/implicit-handy'),
-      );
+  static FlutterDeckSlideWidget get slide => const ImplicitHandyPage().withSlideConfiguration(
+    const FlutterDeckSlideConfiguration(route: '/implicit-handy'),
+  );
 
   @override
   State<ImplicitHandyPage> createState() => _ImplicitHandyPageState();
@@ -26,7 +29,7 @@ const _code2 = '''
 
 class _ImplicitHandyPageState extends State<ImplicitHandyPage> {
   bool _isAnimation = false;
-  double _textOpacity = 0.0;
+  double _textOpacity = 0;
   int _step = 0;
   Timer? _timer;
 
@@ -87,16 +90,14 @@ class _ImplicitHandyPageState extends State<ImplicitHandyPage> {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               AnimatedTo.spring(
-                                globalKey: GlobalObjectKey('text0'),
+                                globalKey: const GlobalObjectKey('text0'),
                                 child: Text(
                                   _code1,
-                                  style: FlutterDeckTheme.of(
-                                    context,
-                                  ).textTheme.bodyLarge,
+                                  style: FlutterDeckTheme.of(context).textTheme.bodyLarge,
                                 ),
                               ),
                               AnimatedTo.spring(
-                                globalKey: GlobalObjectKey('text1'),
+                                globalKey: const GlobalObjectKey('text1'),
                                 child: Text(
                                   '    0 => Alignment.topLeft,',
                                   style: TextStyle(
@@ -105,7 +106,7 @@ class _ImplicitHandyPageState extends State<ImplicitHandyPage> {
                                 ),
                               ),
                               AnimatedTo.spring(
-                                globalKey: GlobalObjectKey('text2'),
+                                globalKey: const GlobalObjectKey('text2'),
                                 child: Text(
                                   '    1 => Alignment.topRight,',
                                   style: TextStyle(
@@ -114,7 +115,7 @@ class _ImplicitHandyPageState extends State<ImplicitHandyPage> {
                                 ),
                               ),
                               AnimatedTo.spring(
-                                globalKey: GlobalObjectKey('text3'),
+                                globalKey: const GlobalObjectKey('text3'),
                                 child: Text(
                                   '    2 => Alignment.bottomRight,',
                                   style: TextStyle(
@@ -123,7 +124,7 @@ class _ImplicitHandyPageState extends State<ImplicitHandyPage> {
                                 ),
                               ),
                               AnimatedTo.spring(
-                                globalKey: GlobalObjectKey('text4'),
+                                globalKey: const GlobalObjectKey('text4'),
                                 child: Text(
                                   '    _ => Alignment.bottomLeft,',
                                   style: TextStyle(
@@ -132,42 +133,42 @@ class _ImplicitHandyPageState extends State<ImplicitHandyPage> {
                                 ),
                               ),
                               AnimatedTo.spring(
-                                globalKey: GlobalObjectKey('text5'),
-                                child: Text('  }'),
+                                globalKey: const GlobalObjectKey('text5'),
+                                child: const Text('  }'),
                               ),
                               if (_isAnimation)
                                 AnimatedTo.spring(
-                                  globalKey: GlobalObjectKey('AnimatedTo1'),
+                                  globalKey: const GlobalObjectKey('AnimatedTo1'),
                                   slidingFrom: const Offset(400, 0),
                                   child: AnimatedOpacity(
                                     duration: const Duration(milliseconds: 800),
                                     opacity: _textOpacity,
-                                    child: Text(
+                                    child: const Text(
                                       _code2,
                                       style: TextStyle(color: Colors.amber),
                                     ),
                                   ),
                                 ),
                               AnimatedTo.spring(
-                                globalKey: GlobalObjectKey('text6'),
-                                child: Text('    child: _Cube(),'),
+                                globalKey: const GlobalObjectKey('text6'),
+                                child: const Text('    child: _Cube(),'),
                               ),
                               if (_isAnimation)
                                 AnimatedTo.spring(
-                                  globalKey: GlobalObjectKey('AnimatedTo2'),
+                                  globalKey: const GlobalObjectKey('AnimatedTo2'),
                                   slidingFrom: const Offset(400, 0),
                                   child: AnimatedOpacity(
                                     duration: const Duration(milliseconds: 800),
                                     opacity: _textOpacity,
-                                    child: Text(
+                                    child: const Text(
                                       '  ),',
                                       style: TextStyle(color: Colors.amber),
                                     ),
                                   ),
                                 ),
                               AnimatedTo.spring(
-                                globalKey: GlobalObjectKey('text7'),
-                                child: Text('),'),
+                                globalKey: const GlobalObjectKey('text7'),
+                                child: const Text('),'),
                               ),
                             ],
                           ),
@@ -183,7 +184,7 @@ class _ImplicitHandyPageState extends State<ImplicitHandyPage> {
                           _ => Alignment.bottomLeft,
                         },
                         child: AnimatedTo.spring(
-                          globalKey: GlobalObjectKey('circle'),
+                          globalKey: const GlobalObjectKey('circle'),
                           enabled: _isAnimation,
                           child: Container(
                             decoration: BoxDecoration(

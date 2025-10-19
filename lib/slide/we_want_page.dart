@@ -1,12 +1,16 @@
+// 🐦 Flutter imports:
 import 'package:flutter/material.dart';
+
+// 📦 Package imports:
 import 'package:flutter_deck/flutter_deck.dart';
 import 'package:gap/gap.dart';
 
 class WeWantPage extends StatelessWidget {
   const WeWantPage({super.key});
 
-  static FlutterDeckSlideWidget get slide => WeWantPage()
-      .withSlideConfiguration(FlutterDeckSlideConfiguration(route: '/we-want'));
+  static FlutterDeckSlideWidget get slide => const WeWantPage().withSlideConfiguration(
+    const FlutterDeckSlideConfiguration(route: '/we-want'),
+  );
 
   @override
   Widget build(BuildContext context) {
@@ -22,7 +26,7 @@ class WeWantPage extends StatelessWidget {
                 'We may want:',
                 style: FlutterDeckTheme.of(context).textTheme.title,
               ),
-              Gap(32),
+              const Gap(32),
               Text(
                 '✅ animation without layout calculation',
                 style: FlutterDeckTheme.of(context).textTheme.subtitle,

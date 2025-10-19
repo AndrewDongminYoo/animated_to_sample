@@ -1,14 +1,16 @@
+// 🐦 Flutter imports:
 import 'package:flutter/material.dart';
+
+// 📦 Package imports:
 import 'package:flutter_deck/flutter_deck.dart';
 import 'package:gap/gap.dart';
 
 class StrategyPage extends StatefulWidget {
   const StrategyPage({super.key});
 
-  static FlutterDeckSlideWidget get slide =>
-      StrategyPage().withSlideConfiguration(
-        FlutterDeckSlideConfiguration(route: '/strategy'),
-      );
+  static FlutterDeckSlideWidget get slide => const StrategyPage().withSlideConfiguration(
+    const FlutterDeckSlideConfiguration(route: '/strategy'),
+  );
 
   @override
   State<StrategyPage> createState() => _StrategyPageState();
@@ -17,21 +19,19 @@ class StrategyPage extends StatefulWidget {
 class _StrategyPageState extends State<StrategyPage> {
   int _step = 0;
   double _height = 0;
-  final _destKey = GlobalKey();
-  final _startKey = GlobalKey();
+  final GlobalKey<State<StatefulWidget>> _destKey = GlobalKey();
+  final GlobalKey<State<StatefulWidget>> _startKey = GlobalKey();
   double _destY = 0;
   double _startY = 0;
 
   void _detectStartOffset() {
-    final renderObject =
-        _startKey.currentContext?.findRenderObject() as RenderBox;
+    final renderObject = _startKey.currentContext!.findRenderObject()! as RenderBox;
     final position = renderObject.localToGlobal(Offset.zero);
     setState(() => _startY = position.dy);
   }
 
   void _detectOffset() {
-    final renderObject =
-        _destKey.currentContext?.findRenderObject() as RenderBox;
+    final renderObject = _destKey.currentContext!.findRenderObject()! as RenderBox;
     final position = renderObject.localToGlobal(Offset.zero);
     setState(() => _destY = position.dy - 6);
   }
@@ -61,12 +61,12 @@ class _StrategyPageState extends State<StrategyPage> {
           child: Column(
             mainAxisSize: MainAxisSize.min,
             children: [
-              Gap(12),
+              const Gap(12),
               Text(
                 'Strategy',
                 style: FlutterDeckTheme.of(context).textTheme.title,
               ),
-              Gap(120),
+              const Gap(120),
               Expanded(
                 child: Stack(
                   children: [
@@ -82,19 +82,16 @@ class _StrategyPageState extends State<StrategyPage> {
                           child: Center(
                             child: Column(
                               children: [
-                                Gap(240),
+                                const Gap(240),
                                 Stack(
                                   clipBehavior: Clip.none,
                                   children: [
                                     Text(
                                       key: _destKey,
                                       'AnimatedTo Changes Your Moving Animations, but How?',
-                                      style: FlutterDeckTheme.of(context)
-                                          .textTheme
-                                          .title
-                                          .copyWith(
-                                            color: Colors.grey.shade800,
-                                          ),
+                                      style: FlutterDeckTheme.of(
+                                        context,
+                                      ).textTheme.title.copyWith(color: Colors.grey.shade800),
                                     ),
                                     if (_step > 2)
                                       Positioned(
@@ -107,15 +104,11 @@ class _StrategyPageState extends State<StrategyPage> {
                                           ),
                                           decoration: BoxDecoration(
                                             color: Colors.deepOrange,
-                                            borderRadius: BorderRadius.circular(
-                                              4,
-                                            ),
+                                            borderRadius: BorderRadius.circular(4),
                                           ),
                                           child: Text(
                                             '(0, ${_destY - _startY})',
-                                            style: FlutterDeckTheme.of(
-                                              context,
-                                            ).textTheme.bodyMedium,
+                                            style: FlutterDeckTheme.of(context).textTheme.bodyMedium,
                                           ),
                                         ),
                                       ),
@@ -128,7 +121,7 @@ class _StrategyPageState extends State<StrategyPage> {
                       ),
                     Column(
                       children: [
-                        Gap(60),
+                        const Gap(60),
                         AnimatedContainer(
                           duration: const Duration(milliseconds: 400),
                           curve: Curves.easeInOut,
@@ -139,9 +132,7 @@ class _StrategyPageState extends State<StrategyPage> {
                           children: [
                             Text(
                               'AnimatedTo Changes Your Moving Animations, but How?',
-                              style: FlutterDeckTheme.of(
-                                context,
-                              ).textTheme.title,
+                              style: FlutterDeckTheme.of(context).textTheme.title,
                             ),
                             if (_step > 0)
                               Positioned(
@@ -159,9 +150,7 @@ class _StrategyPageState extends State<StrategyPage> {
                                   child: Text(
                                     key: _startKey,
                                     '(0, $_height)',
-                                    style: FlutterDeckTheme.of(
-                                      context,
-                                    ).textTheme.bodyMedium,
+                                    style: FlutterDeckTheme.of(context).textTheme.bodyMedium,
                                   ),
                                 ),
                               ),

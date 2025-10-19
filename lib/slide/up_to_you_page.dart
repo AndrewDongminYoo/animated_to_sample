@@ -1,15 +1,17 @@
-import 'package:animated_to/animated_to.dart';
+// 🐦 Flutter imports:
 import 'package:flutter/material.dart';
+
+// 📦 Package imports:
+import 'package:animated_to/animated_to.dart';
 import 'package:flutter_deck/flutter_deck.dart';
 import 'package:gap/gap.dart';
 
 class UpToYouPage extends StatefulWidget {
   const UpToYouPage({super.key});
 
-  static FlutterDeckSlideWidget get slide =>
-      UpToYouPage().withSlideConfiguration(
-        FlutterDeckSlideConfiguration(route: '/up-to-you'),
-      );
+  static FlutterDeckSlideWidget get slide => const UpToYouPage().withSlideConfiguration(
+    const FlutterDeckSlideConfiguration(route: '/up-to-you'),
+  );
 
   @override
   State<UpToYouPage> createState() => _UpToYouPageState();
@@ -31,29 +33,27 @@ class _UpToYouPageState extends State<UpToYouPage> {
             mainAxisSize: MainAxisSize.min,
             children: [
               AnimatedTo.spring(
-                globalKey: GlobalObjectKey('what-to-make'),
+                globalKey: const GlobalObjectKey('what-to-make'),
                 child: AnimatedDefaultTextStyle(
                   duration: const Duration(milliseconds: 1000),
                   curve: Curves.easeInOut,
-                  style: FlutterDeckTheme.of(context).textTheme.title.copyWith(
-                    color: _showNext ? Colors.grey : Colors.white,
-                  ),
-                  child: Text('What UI to make?'),
+                  style: FlutterDeckTheme.of(
+                    context,
+                  ).textTheme.title.copyWith(color: _showNext ? Colors.grey : Colors.white),
+                  child: const Text('What UI to make?'),
                 ),
               ),
               if (_showNext) ...[
-                Gap(100),
+                const Gap(100),
                 AnimatedTo.spring(
-                  globalKey: GlobalObjectKey('up-to-you'),
-                  slidingFrom: Offset(0, 1000),
+                  globalKey: const GlobalObjectKey('up-to-you'),
+                  slidingFrom: const Offset(0, 1000),
                   child: Text(
                     'Up to YOU! 🧩',
-                    style: FlutterDeckTheme.of(
-                      context,
-                    ).textTheme.title.copyWith(fontSize: 60),
+                    style: FlutterDeckTheme.of(context).textTheme.title.copyWith(fontSize: 60),
                   ),
                 ),
-                Gap(200),
+                const Gap(200),
               ],
             ],
           ),

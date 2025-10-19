@@ -1,11 +1,8 @@
+// 🐦 Flutter imports:
 import 'package:flutter/material.dart';
 
 class CodeContainer extends StatelessWidget {
-  const CodeContainer({
-    super.key,
-    required this.child,
-    required this.isPressed,
-  });
+  const CodeContainer({super.key, required this.child, required this.isPressed});
 
   final Widget child;
   final bool isPressed;
@@ -21,7 +18,7 @@ class CodeContainer extends StatelessWidget {
         borderRadius: BorderRadius.circular(32),
         border: Border.all(color: Colors.white),
       ),
-      padding: EdgeInsets.all(60),
+      padding: const EdgeInsets.all(60),
       child: child,
     );
   }

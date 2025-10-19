@@ -1,15 +1,17 @@
-import 'package:animated_to/animated_to.dart';
+// 🐦 Flutter imports:
 import 'package:flutter/material.dart';
+
+// 📦 Package imports:
+import 'package:animated_to/animated_to.dart';
 import 'package:flutter_deck/flutter_deck.dart';
 import 'package:gap/gap.dart';
 
 class RenderObjectPage extends StatefulWidget {
   const RenderObjectPage({super.key});
 
-  static FlutterDeckSlideWidget get slide =>
-      RenderObjectPage().withSlideConfiguration(
-        FlutterDeckSlideConfiguration(route: '/render-object'),
-      );
+  static FlutterDeckSlideWidget get slide => const RenderObjectPage().withSlideConfiguration(
+    const FlutterDeckSlideConfiguration(route: '/render-object'),
+  );
 
   @override
   State<RenderObjectPage> createState() => _RenderObjectPageState();
@@ -31,29 +33,27 @@ class _RenderObjectPageState extends State<RenderObjectPage> {
             mainAxisSize: MainAxisSize.min,
             children: [
               AnimatedTo.spring(
-                globalKey: GlobalObjectKey('render-object-question'),
+                globalKey: const GlobalObjectKey('render-object-question'),
                 child: AnimatedDefaultTextStyle(
                   duration: const Duration(milliseconds: 1000),
                   curve: Curves.easeInOut,
-                  style: FlutterDeckTheme.of(context).textTheme.title.copyWith(
-                    color: _showNext ? Colors.grey : Colors.white,
-                  ),
-                  child: Text('Q: Who knows?'),
+                  style: FlutterDeckTheme.of(
+                    context,
+                  ).textTheme.title.copyWith(color: _showNext ? Colors.grey : Colors.white),
+                  child: const Text('Q: Who knows?'),
                 ),
               ),
               if (_showNext) ...[
-                Gap(100),
+                const Gap(100),
                 AnimatedTo.spring(
-                  globalKey: GlobalObjectKey('render-object'),
-                  slidingFrom: Offset(0, 1000),
+                  globalKey: const GlobalObjectKey('render-object'),
+                  slidingFrom: const Offset(0, 1000),
                   child: Text(
                     'A: RenderObject',
-                    style: FlutterDeckTheme.of(
-                      context,
-                    ).textTheme.title.copyWith(fontSize: 60),
+                    style: FlutterDeckTheme.of(context).textTheme.title.copyWith(fontSize: 60),
                   ),
                 ),
-                Gap(200),
+                const Gap(200),
               ],
             ],
           ),

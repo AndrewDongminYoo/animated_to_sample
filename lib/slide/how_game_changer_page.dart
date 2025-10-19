@@ -1,15 +1,17 @@
-import 'package:animated_to/animated_to.dart';
+// 🐦 Flutter imports:
 import 'package:flutter/material.dart';
+
+// 📦 Package imports:
+import 'package:animated_to/animated_to.dart';
 import 'package:flutter_deck/flutter_deck.dart';
 import 'package:gap/gap.dart';
 
 class HowGameChangerPage extends StatelessWidget {
   const HowGameChangerPage({super.key});
 
-  static FlutterDeckSlideWidget get slide =>
-      HowGameChangerPage().withSlideConfiguration(
-        FlutterDeckSlideConfiguration(route: '/how-game-changer'),
-      );
+  static FlutterDeckSlideWidget get slide => const HowGameChangerPage().withSlideConfiguration(
+    const FlutterDeckSlideConfiguration(route: '/how-game-changer'),
+  );
 
   @override
   Widget build(BuildContext context) {
@@ -22,36 +24,34 @@ class HowGameChangerPage extends StatelessWidget {
               'animated_to is...',
               style: FlutterDeckTheme.of(context).textTheme.title,
             ),
-            Gap(60),
+            const Gap(60),
             AnimatedTo.spring(
-              globalKey: GlobalObjectKey('handy'),
-              slidingFrom: Offset(0, 200),
-              child: _Item(
+              globalKey: const GlobalObjectKey('handy'),
+              slidingFrom: const Offset(0, 200),
+              child: const _Item(
                 title: 'Handy',
                 description: 'Wrap, rebuild, then animate!',
               ),
             ),
-            Gap(32),
+            const Gap(32),
             AnimatedTo.spring(
-              globalKey: GlobalObjectKey('smooth'),
-              slidingFrom: Offset(0, 400),
-              child: _Item(
+              globalKey: const GlobalObjectKey('smooth'),
+              slidingFrom: const Offset(0, 400),
+              child: const _Item(
                 title: 'Implicit',
-                description:
-                    'No need to calculate / operate animations manually!',
+                description: 'No need to calculate / operate animations manually!',
               ),
             ),
-            Gap(32),
+            const Gap(32),
             AnimatedTo.spring(
-              globalKey: GlobalObjectKey('combinable'),
-              slidingFrom: Offset(0, 600),
-              child: _Item(
+              globalKey: const GlobalObjectKey('combinable'),
+              slidingFrom: const Offset(0, 600),
+              child: const _Item(
                 title: 'Just a widget, so powerful',
-                description:
-                    'AnimatedTo can collaborate with whatever widgets you like!',
+                description: 'AnimatedTo can collaborate with whatever widgets you like!',
               ),
             ),
-            Gap(32),
+            const Gap(32),
           ],
         ),
       ),
@@ -71,7 +71,7 @@ class _Item extends StatelessWidget {
       mainAxisSize: MainAxisSize.min,
       children: [
         Text(title, style: FlutterDeckTheme.of(context).textTheme.subtitle),
-        Gap(8),
+        const Gap(8),
         Text(
           description,
           style: FlutterDeckTheme.of(context).textTheme.bodyLarge,

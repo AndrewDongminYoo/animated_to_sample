@@ -1,4 +1,7 @@
+// 🐦 Flutter imports:
 import 'package:flutter/material.dart';
+
+// 📦 Package imports:
 import 'package:flutter_deck/flutter_deck.dart';
 import 'package:flutter_inappwebview/flutter_inappwebview.dart';
 import 'package:gap/gap.dart';
@@ -6,8 +9,9 @@ import 'package:gap/gap.dart';
 class ThanksPage extends StatelessWidget {
   const ThanksPage({super.key});
 
-  static FlutterDeckSlideWidget get slide => ThanksPage()
-      .withSlideConfiguration(FlutterDeckSlideConfiguration(route: '/thanks'));
+  static FlutterDeckSlideWidget get slide => const ThanksPage().withSlideConfiguration(
+    const FlutterDeckSlideConfiguration(route: '/thanks'),
+  );
 
   @override
   Widget build(BuildContext context) {
@@ -27,9 +31,7 @@ class ThanksPage extends StatelessWidget {
                   children: [
                     InAppWebView(
                       initialUrlRequest: URLRequest(
-                        url: WebUri(
-                          'https://chooyan-eng.github.io/chooyan_resume/',
-                        ),
+                        url: WebUri('https://chooyan-eng.github.io/chooyan_resume/'),
                       ),
                       initialSettings: InAppWebViewSettings(pageZoom: 1.5),
                     ),
@@ -37,7 +39,7 @@ class ThanksPage extends StatelessWidget {
                       right: 40,
                       top: 0,
                       child: Container(
-                        padding: EdgeInsets.all(4),
+                        padding: const EdgeInsets.all(4),
                         decoration: BoxDecoration(
                           border: Border.all(color: Colors.white, width: 2),
                         ),

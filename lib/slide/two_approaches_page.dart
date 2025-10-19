@@ -1,24 +1,27 @@
-import 'package:animated_to/animated_to.dart';
+// 🐦 Flutter imports:
 import 'package:flutter/material.dart';
-import 'package:flutter_alliance_2025/widget/code_container.dart';
+
+// 📦 Package imports:
+import 'package:animated_to/animated_to.dart';
 import 'package:flutter_deck/flutter_deck.dart';
 import 'package:gap/gap.dart';
+
+// 🌎 Project imports:
+import 'package:flutter_alliance_2025/widget/code_container.dart';
 
 class TwoApproachesPage extends StatefulWidget {
   const TwoApproachesPage({super.key});
 
-  static FlutterDeckSlideWidget get slide =>
-      TwoApproachesPage().withSlideConfiguration(
-        FlutterDeckSlideConfiguration(route: '/two-approaches'),
-      );
+  static FlutterDeckSlideWidget get slide => const TwoApproachesPage().withSlideConfiguration(
+    const FlutterDeckSlideConfiguration(route: '/two-approaches'),
+  );
 
   @override
   State<TwoApproachesPage> createState() => _TwoApproachesPageState();
 }
 
-class _TwoApproachesPageState extends State<TwoApproachesPage>
-    with TickerProviderStateMixin {
-  double _offsetY = .0;
+class _TwoApproachesPageState extends State<TwoApproachesPage> with TickerProviderStateMixin {
+  double _offsetY = 0;
   bool _isExplicit = true;
   bool _isGapExpanded = false;
 
@@ -30,7 +33,6 @@ class _TwoApproachesPageState extends State<TwoApproachesPage>
         AnimationController(
           duration: const Duration(milliseconds: 460),
           vsync: this,
-          lowerBound: .0,
           upperBound: 460,
         )..addListener(() {
           setState(() {
@@ -56,7 +58,7 @@ class _TwoApproachesPageState extends State<TwoApproachesPage>
                 child: Column(
                   mainAxisSize: MainAxisSize.min,
                   children: [
-                    Gap(100),
+                    const Gap(100),
                     AnimatedContainer(
                       duration: const Duration(milliseconds: 460),
                       curve: Curves.easeIn,
@@ -83,26 +85,28 @@ class _TwoApproachesPageState extends State<TwoApproachesPage>
                     left: 0,
                     right: 0,
                     child: AnimatedTo.spring(
-                      globalKey: GlobalObjectKey('code'),
+                      globalKey: const GlobalObjectKey('code'),
                       child: Column(
                         mainAxisSize: MainAxisSize.min,
                         children: [
                           _CodeExplicit(
                             offsetY: _offsetY,
-                            onTap: () {
-                              _offsetY == 0
-                                  ? _animationController.forward()
-                                  : _animationController.reverse();
+                            onTap: () async {
+                              if (_offsetY == 0) {
+                                await _animationController.forward();
+                              } else {
+                                await _animationController.reverse();
+                              }
                             },
                           ),
-                          Gap(40),
+                          const Gap(40),
                           _CodeImplicit(
                             isBottom: _isGapExpanded,
                             onTap: () {
                               setState(() => _isGapExpanded = !_isGapExpanded);
                             },
                           ),
-                          Gap(200),
+                          const Gap(200),
                         ],
                       ),
                     ),
@@ -117,7 +121,7 @@ class _TwoApproachesPageState extends State<TwoApproachesPage>
   }
 }
 
-final _code1 = '''
+const _code1 = '''
 
 
 @override
@@ -125,30 +129,30 @@ void initState() {
   super.initState();
 ''';
 
-final _code2 = '''
+const _code2 = '''
   _animationController = AnimationController(
     duration: const Duration(milliseconds: 1000),
     vsync: this,
   );
 ''';
 
-final _code3 = '''
+const _code3 = '''
 }
 ...
 ''';
 
-final _code4 = '''
+const _code4 = '''
 onTap: () => _controller.forward(),
 ''';
 
-final _code5 = '''
+const _code5 = '''
 ...
 Column(
   children: [
 ''';
 
-final _code6 = '    Gap(_controller.value),';
-final _code7 = '\n    Text(\'AnimatedTo Changes Your Moving Animations\'),';
+const _code6 = '    Gap(_controller.value),';
+const _code7 = "\n    Text('AnimatedTo Changes Your Moving Animations'),";
 
 class _CodeExplicit extends StatefulWidget {
   const _CodeExplicit({required this.offsetY, required this.onTap});
@@ -179,31 +183,29 @@ class _CodeExplicitState extends State<_CodeExplicit> {
           TextSpan(
             style: FlutterDeckTheme.of(context).textTheme.bodyMedium,
             children: [
-              TextSpan(
+              const TextSpan(
                 text: 'late final AnimationController _controller;',
                 style: TextStyle(color: Colors.orangeAccent),
               ),
-              TextSpan(text: _code1),
-              TextSpan(
+              const TextSpan(text: _code1),
+              const TextSpan(
                 text: _code2,
                 style: TextStyle(color: Colors.orangeAccent),
               ),
-              TextSpan(text: _code3),
+              const TextSpan(text: _code3),
               TextSpan(
                 text: _code4,
                 style: TextStyle(
-                  color: _isPressed
-                      ? Colors.orange.shade900
-                      : Colors.orangeAccent,
+                  color: _isPressed ? Colors.orange.shade900 : Colors.orangeAccent,
                 ),
               ),
-              TextSpan(text: _code5),
-              TextSpan(
+              const TextSpan(text: _code5),
+              const TextSpan(
                 text: _code6,
                 style: TextStyle(color: Colors.orangeAccent),
               ),
               TextSpan(text: ' // -> ${widget.offsetY.toInt()}'),
-              TextSpan(text: _code7),
+              const TextSpan(text: _code7),
             ],
           ),
         ),
@@ -212,33 +214,33 @@ class _CodeExplicitState extends State<_CodeExplicit> {
   }
 }
 
-final _code11 = '''
+const _code11 = '''
 AnimatedContainer(
   duration: const Duration(milliseconds: 1000),
   curve: Curves.easeIn,
   height: ''';
 
-final _code12 = '_isBottom';
-final _code13 = ' ? ';
-final _code14 = '460';
-final _code15 = ' : ';
-final _code16 = '0';
-final _code17 = '''
+const _code12 = '_isBottom';
+const _code13 = ' ? ';
+const _code14 = '460';
+const _code15 = ' : ';
+const _code16 = '0';
+const _code17 = '''
 );
 ''';
 
-final _code18 = '''
+const _code18 = '''
 
 ...
 
 onTap: () {
 ''';
 
-final _code19 = '''
+const _code19 = '''
   setState(() => _isBottom = !_isBottom);
 ''';
 
-final _code20 = '''
+const _code20 = '''
 }
 ''';
 
@@ -270,41 +272,33 @@ class _CodeImplicitState extends State<_CodeImplicit> {
           TextSpan(
             style: FlutterDeckTheme.of(context).textTheme.bodyMedium,
             children: [
-              TextSpan(
+              const TextSpan(
                 text: _code11,
                 style: TextStyle(color: Colors.orangeAccent),
               ),
               TextSpan(
                 text: _code12,
-                style: TextStyle(
-                  color: widget.isBottom ? Colors.orangeAccent : null,
-                ),
+                style: TextStyle(color: widget.isBottom ? Colors.orangeAccent : null),
               ),
-              TextSpan(text: _code13),
+              const TextSpan(text: _code13),
               TextSpan(
                 text: _code14,
-                style: TextStyle(
-                  color: widget.isBottom ? Colors.orangeAccent : null,
-                ),
+                style: TextStyle(color: widget.isBottom ? Colors.orangeAccent : null),
               ),
-              TextSpan(text: _code15),
+              const TextSpan(text: _code15),
               TextSpan(
                 text: _code16,
-                style: TextStyle(
-                  color: widget.isBottom ? null : Colors.orangeAccent,
-                ),
+                style: TextStyle(color: widget.isBottom ? null : Colors.orangeAccent),
               ),
-              TextSpan(text: _code17),
-              TextSpan(text: _code18),
+              const TextSpan(text: _code17),
+              const TextSpan(text: _code18),
               TextSpan(
                 text: _code19,
                 style: TextStyle(
-                  color: _isPressed
-                      ? Colors.orange.shade900
-                      : Colors.orangeAccent,
+                  color: _isPressed ? Colors.orange.shade900 : Colors.orangeAccent,
                 ),
               ),
-              TextSpan(text: _code20),
+              const TextSpan(text: _code20),
             ],
           ),
         ),

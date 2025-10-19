@@ -1,6 +1,13 @@
+// 🎯 Dart imports:
 import 'dart:async';
 
+// 🐦 Flutter imports:
 import 'package:flutter/material.dart';
+
+// 📦 Package imports:
+import 'package:flutter_deck/flutter_deck.dart';
+
+// 🌎 Project imports:
 import 'package:flutter_alliance_2025/slide/animated_to_page.dart';
 import 'package:flutter_alliance_2025/slide/basic_demo_page.dart';
 import 'package:flutter_alliance_2025/slide/customize_renderobject_page.dart';
@@ -18,12 +25,11 @@ import 'package:flutter_alliance_2025/slide/quiz_page.dart';
 import 'package:flutter_alliance_2025/slide/render_object_page.dart';
 import 'package:flutter_alliance_2025/slide/strategy_page.dart';
 import 'package:flutter_alliance_2025/slide/thanks_page.dart';
+import 'package:flutter_alliance_2025/slide/title_page.dart';
+import 'package:flutter_alliance_2025/slide/two_approaches_page.dart';
 import 'package:flutter_alliance_2025/slide/up_to_you_page.dart';
 import 'package:flutter_alliance_2025/slide/we_want_page.dart';
 import 'package:flutter_alliance_2025/slide/what_is_implicit_page.dart';
-import 'package:flutter_alliance_2025/slide/title_page.dart';
-import 'package:flutter_alliance_2025/slide/two_approaches_page.dart';
-import 'package:flutter_deck/flutter_deck.dart';
 
 const _presentationDuration = Duration(minutes: 30);
 
@@ -31,7 +37,7 @@ void main() {
   runApp(const MainApp());
 }
 
-final slides = [
+final List<FlutterDeckSlideWidget> slides = [
   TitlePage.slide,
   TwoApproachesPage.slide,
   WhatIsImplicitPage.slide,
@@ -70,7 +76,8 @@ class MainApp extends StatelessWidget {
           bodyMedium: TextStyle(fontSize: 24),
         ),
       ),
-      configuration: FlutterDeckConfiguration(
+      // ignore: avoid_redundant_argument_values
+      configuration: const FlutterDeckConfiguration(
         // slideSize: FlutterDeckSlideSize.custom(width: 1920, height: 1080),
       ),
       themeMode: ThemeMode.dark,
@@ -103,8 +110,7 @@ class _TimerState extends State<_Timer> {
 
   @override
   Widget build(BuildContext context) {
-    final duration =
-        _presentationDuration - DateTime.now().difference(widget.startTime);
+    final duration = _presentationDuration - DateTime.now().difference(widget.startTime);
     return Material(
       color: Colors.transparent,
       child: GestureDetector(
@@ -123,7 +129,7 @@ class _TimerState extends State<_Timer> {
             child: _isLetterMode
                 ? Text(
                     '${duration.inMinutes}:${duration.inSeconds.remainder(60)}',
-                    style: TextStyle(
+                    style: const TextStyle(
                       color: Colors.white,
                       fontSize: 20,
                       fontWeight: FontWeight.bold,

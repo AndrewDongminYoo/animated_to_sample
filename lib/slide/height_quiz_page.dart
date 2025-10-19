@@ -1,14 +1,16 @@
+// 🐦 Flutter imports:
 import 'package:flutter/material.dart';
+
+// 📦 Package imports:
 import 'package:flutter_deck/flutter_deck.dart';
 import 'package:gap/gap.dart';
 
 class HeightQuizPage extends StatefulWidget {
   const HeightQuizPage({super.key});
 
-  static FlutterDeckSlideWidget get slide =>
-      HeightQuizPage().withSlideConfiguration(
-        FlutterDeckSlideConfiguration(route: '/height-quiz'),
-      );
+  static FlutterDeckSlideWidget get slide => const HeightQuizPage().withSlideConfiguration(
+    const FlutterDeckSlideConfiguration(route: '/height-quiz'),
+  );
 
   @override
   State<HeightQuizPage> createState() => _HeightQuizPageState();
@@ -32,7 +34,7 @@ class _HeightQuizPageState extends State<HeightQuizPage> {
           child: Column(
             mainAxisSize: MainAxisSize.min,
             children: [
-              Gap(120),
+              const Gap(120),
               Row(
                 mainAxisSize: MainAxisSize.min,
                 children: [
@@ -41,23 +43,23 @@ class _HeightQuizPageState extends State<HeightQuizPage> {
                     child: TextField(
                       controller: _heightController,
                       decoration: InputDecoration(
-                        border: OutlineInputBorder(),
+                        border: const OutlineInputBorder(),
                         fillColor: Colors.grey.shade900,
                       ),
                       style: FlutterDeckTheme.of(context).textTheme.subtitle,
                     ),
                   ),
-                  Gap(32),
+                  const Gap(32),
                   SizedBox(
                     height: 60,
                     width: 200,
                     child: FilledButton(
                       onPressed: () {
-                        setState(
-                          () => _height = double.parse(_heightController.text),
-                        );
+                        setState(() {
+                          _height = double.parse(_heightController.text);
+                        });
                       },
-                      child: Text('GO!'),
+                      child: const Text('GO!'),
                     ),
                   ),
                 ],
@@ -98,8 +100,8 @@ class _HeightQuizPageState extends State<HeightQuizPage> {
                                   ),
                                 ],
                               ),
-                              Gap(40),
-                              Icon(
+                              const Gap(40),
+                              const Icon(
                                 Icons.question_mark,
                                 size: 60,
                                 color: Colors.grey,
@@ -120,13 +122,12 @@ class _HeightQuizPageState extends State<HeightQuizPage> {
                         child: Center(
                           child: Column(
                             children: [
-                              Gap(240),
+                              const Gap(240),
                               Text(
                                 'AnimatedTo Changes Your Moving Animations, but How?',
-                                style: FlutterDeckTheme.of(context)
-                                    .textTheme
-                                    .title
-                                    .copyWith(color: Colors.grey.shade800),
+                                style: FlutterDeckTheme.of(
+                                  context,
+                                ).textTheme.title.copyWith(color: Colors.grey.shade800),
                               ),
                             ],
                           ),
@@ -135,7 +136,7 @@ class _HeightQuizPageState extends State<HeightQuizPage> {
                     ),
                     Column(
                       children: [
-                        Gap(60),
+                        const Gap(60),
                         AnimatedContainer(
                           duration: const Duration(milliseconds: 400),
                           curve: Curves.easeInOut,

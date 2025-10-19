@@ -1,15 +1,17 @@
-import 'package:animated_to/animated_to.dart';
+// 🐦 Flutter imports:
 import 'package:flutter/material.dart';
+
+// 📦 Package imports:
+import 'package:animated_to/animated_to.dart';
 import 'package:flutter_deck/flutter_deck.dart';
 import 'package:gap/gap.dart';
 
 class NotStraightForwardPage extends StatefulWidget {
   const NotStraightForwardPage({super.key});
 
-  static FlutterDeckSlideWidget get slide =>
-      NotStraightForwardPage().withSlideConfiguration(
-        FlutterDeckSlideConfiguration(route: '/not-straightforward'),
-      );
+  static FlutterDeckSlideWidget get slide => const NotStraightForwardPage().withSlideConfiguration(
+    const FlutterDeckSlideConfiguration(route: '/not-straightforward'),
+  );
 
   @override
   State<NotStraightForwardPage> createState() => _NotStraightForwardPageState();
@@ -32,16 +34,16 @@ class _NotStraightForwardPageState extends State<NotStraightForwardPage> {
             spacing: 32,
             children: [
               AnimatedTo.spring(
-                globalKey: GlobalObjectKey('not-straightforward'),
+                globalKey: const GlobalObjectKey('not-straightforward'),
                 child: Text(
                   'Does this always work? 🤔',
-                  style: FlutterDeckTheme.of(context).textTheme.title.copyWith(
-                    color: _step == 0 ? null : Colors.grey.shade800,
-                  ),
+                  style: FlutterDeckTheme.of(
+                    context,
+                  ).textTheme.title.copyWith(color: _step == 0 ? null : Colors.grey.shade800),
                 ),
               ),
               AnimatedTo.spring(
-                globalKey: GlobalObjectKey('not-straightforward-1'),
+                globalKey: const GlobalObjectKey('not-straightforward-1'),
                 child: Opacity(
                   opacity: _step == 0 ? 0 : 1,
                   child: Text(
@@ -56,38 +58,32 @@ class _NotStraightForwardPageState extends State<NotStraightForwardPage> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     spacing: 32,
                     children: [
-                      Gap(60),
+                      const Gap(60),
                       AnimatedTo.spring(
-                        globalKey: GlobalObjectKey('not-straightforward-2'),
-                        slidingFrom: Offset(0, 600),
+                        globalKey: const GlobalObjectKey('not-straightforward-2'),
+                        slidingFrom: const Offset(0, 600),
                         child: Text(
                           '- More complex logic',
-                          style: FlutterDeckTheme.of(
-                            context,
-                          ).textTheme.subtitle,
+                          style: FlutterDeckTheme.of(context).textTheme.subtitle,
                         ),
                       ),
                       AnimatedTo.spring(
-                        globalKey: GlobalObjectKey('not-straightforward-3'),
-                        slidingFrom: Offset(0, 800),
+                        globalKey: const GlobalObjectKey('not-straightforward-3'),
+                        slidingFrom: const Offset(0, 800),
                         child: Text(
                           '- Unnecessary additional widgets',
-                          style: FlutterDeckTheme.of(
-                            context,
-                          ).textTheme.subtitle,
+                          style: FlutterDeckTheme.of(context).textTheme.subtitle,
                         ),
                       ),
                       AnimatedTo.spring(
-                        globalKey: GlobalObjectKey('not-straightforward-4'),
-                        slidingFrom: Offset(0, 1000),
+                        globalKey: const GlobalObjectKey('not-straightforward-4'),
+                        slidingFrom: const Offset(0, 1000),
                         child: Text(
                           '- Not capable to implement complicated animations',
-                          style: FlutterDeckTheme.of(
-                            context,
-                          ).textTheme.subtitle,
+                          style: FlutterDeckTheme.of(context).textTheme.subtitle,
                         ),
                       ),
-                      Gap(120),
+                      const Gap(120),
                     ],
                   ),
                 ),

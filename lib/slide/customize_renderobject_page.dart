@@ -1,19 +1,20 @@
-import 'package:animated_to/animated_to.dart';
+// 🐦 Flutter imports:
 import 'package:flutter/material.dart';
+
+// 📦 Package imports:
+import 'package:animated_to/animated_to.dart';
 import 'package:flutter_deck/flutter_deck.dart';
 import 'package:gap/gap.dart';
 
 class CustomizeRenderObjectPage extends StatefulWidget {
   const CustomizeRenderObjectPage({super.key});
 
-  static FlutterDeckSlideWidget get slide =>
-      CustomizeRenderObjectPage().withSlideConfiguration(
-        FlutterDeckSlideConfiguration(route: '/customize-renderobject'),
-      );
+  static FlutterDeckSlideWidget get slide => const CustomizeRenderObjectPage().withSlideConfiguration(
+    const FlutterDeckSlideConfiguration(route: '/customize-renderobject'),
+  );
 
   @override
-  State<CustomizeRenderObjectPage> createState() =>
-      _CustomizeRenderObjectPageState();
+  State<CustomizeRenderObjectPage> createState() => _CustomizeRenderObjectPageState();
 }
 
 class _CustomizeRenderObjectPageState extends State<CustomizeRenderObjectPage> {
@@ -39,12 +40,12 @@ class _CustomizeRenderObjectPageState extends State<CustomizeRenderObjectPage> {
               mainAxisAlignment: MainAxisAlignment.center,
               spacing: 40,
               children: [
-                _WidgetTree(),
-                Row(
+                const _WidgetTree(),
+                const Row(
                   mainAxisSize: MainAxisSize.min,
                   children: [
                     Padding(
-                      padding: const EdgeInsets.only(top: 32),
+                      padding: EdgeInsets.only(top: 32),
                       child: Icon(Icons.arrow_forward, size: 100),
                     ),
                     Gap(40),
@@ -56,11 +57,11 @@ class _CustomizeRenderObjectPageState extends State<CustomizeRenderObjectPage> {
                   children: [
                     Row(
                       children: [
-                        Padding(
-                          padding: const EdgeInsets.only(top: 32),
+                        const Padding(
+                          padding: EdgeInsets.only(top: 32),
                           child: Icon(Icons.arrow_forward, size: 100),
                         ),
-                        Gap(40),
+                        const Gap(40),
                         _RenderObjectTree(customized: _step >= 1),
                       ],
                     ),
@@ -88,28 +89,22 @@ class _CustomizeRenderObjectPageState extends State<CustomizeRenderObjectPage> {
                                 children: [
                                   Text(
                                     'Layout',
-                                    style: FlutterDeckTheme.of(
-                                      context,
-                                    ).textTheme.subtitle.copyWith(),
+                                    style: FlutterDeckTheme.of(context).textTheme.subtitle.copyWith(),
                                   ),
-                                  Icon(Icons.arrow_downward, size: 60),
-                                  _step >= 1
-                                      ? Text(
-                                          'Animation',
-                                          style: FlutterDeckTheme.of(context)
-                                              .textTheme
-                                              .subtitle
-                                              .copyWith(
-                                                fontWeight: FontWeight.bold,
-                                                color: Colors.green.shade800,
-                                              ),
-                                        )
-                                      : Text(
-                                          'Paint',
-                                          style: FlutterDeckTheme.of(
-                                            context,
-                                          ).textTheme.subtitle,
-                                        ),
+                                  const Icon(Icons.arrow_downward, size: 60),
+                                  if (_step >= 1)
+                                    Text(
+                                      'Animation',
+                                      style: FlutterDeckTheme.of(context).textTheme.subtitle.copyWith(
+                                        fontWeight: FontWeight.bold,
+                                        color: Colors.green.shade800,
+                                      ),
+                                    )
+                                  else
+                                    Text(
+                                      'Paint',
+                                      style: FlutterDeckTheme.of(context).textTheme.subtitle,
+                                    ),
                                 ],
                               ),
                             ),
@@ -126,22 +121,20 @@ class _CustomizeRenderObjectPageState extends State<CustomizeRenderObjectPage> {
                       mainAxisSize: MainAxisSize.min,
                       crossAxisAlignment: CrossAxisAlignment.end,
                       children: [
-                        Align(
+                        const Align(
                           alignment: Alignment.bottomCenter,
                           child: Padding(
-                            padding: const EdgeInsets.only(top: 32),
+                            padding: EdgeInsets.only(top: 32),
                             child: Icon(Icons.arrow_forward, size: 100),
                           ),
                         ),
-                        Gap(40),
+                        const Gap(40),
                         SizedBox(
                           height: 300,
                           child: Align(
-                            alignment: _step >= 2 && _step.isEven
-                                ? Alignment.topCenter
-                                : Alignment.bottomCenter,
+                            alignment: _step >= 2 && _step.isEven ? Alignment.topCenter : Alignment.bottomCenter,
                             child: AnimatedTo.spring(
-                              globalKey: GlobalObjectKey('cube-animation'),
+                              globalKey: const GlobalObjectKey('cube-animation'),
                               child: Container(
                                 decoration: BoxDecoration(
                                   gradient: LinearGradient(
@@ -159,9 +152,7 @@ class _CustomizeRenderObjectPageState extends State<CustomizeRenderObjectPage> {
                                   ),
                                   boxShadow: [
                                     BoxShadow(
-                                      color: Colors.amber.withValues(
-                                        alpha: 0.3,
-                                      ),
+                                      color: Colors.amber.withValues(alpha: 0.3),
                                       blurRadius: 8,
                                       offset: const Offset(0, 4),
                                     ),
@@ -195,20 +186,20 @@ class _WidgetTree extends StatelessWidget {
       mainAxisSize: MainAxisSize.min,
       children: [
         Text('Widget', style: FlutterDeckTheme.of(context).textTheme.bodyLarge),
-        Gap(8),
-        _WidgetFigure(),
-        AnimatedOpacity(
-          duration: const Duration(milliseconds: 500),
-          opacity: 0.0,
+        const Gap(8),
+        const _WidgetFigure(),
+        const AnimatedOpacity(
+          duration: Duration(milliseconds: 500),
+          opacity: 0,
           child: _Connector(),
         ),
-        _WidgetFigure(),
-        AnimatedOpacity(
-          duration: const Duration(milliseconds: 500),
-          opacity: 0.0,
+        const _WidgetFigure(),
+        const AnimatedOpacity(
+          duration: Duration(milliseconds: 500),
+          opacity: 0,
           child: _Connector(),
         ),
-        _WidgetFigure(),
+        const _WidgetFigure(),
       ],
     );
   }
@@ -226,12 +217,12 @@ class _ElementTree extends StatelessWidget {
           'Element',
           style: FlutterDeckTheme.of(context).textTheme.bodyLarge,
         ),
-        Gap(8),
-        _ElementFigure(),
-        _Connector(),
-        _ElementFigure(),
-        _Connector(),
-        _ElementFigure(),
+        const Gap(8),
+        const _ElementFigure(),
+        const _Connector(),
+        const _ElementFigure(),
+        const _Connector(),
+        const _ElementFigure(),
       ],
     );
   }
@@ -247,21 +238,20 @@ class _RenderObjectTree extends StatelessWidget {
     return Column(
       mainAxisSize: MainAxisSize.min,
       children: [
-        !customized
-            ? Text(
-                'RenderObject',
-                style: FlutterDeckTheme.of(context).textTheme.bodyLarge,
-              )
-            : Text(
-                'Customized\nRenderObject',
-                style: FlutterDeckTheme.of(
-                  context,
-                ).textTheme.bodyLarge.copyWith(color: Colors.greenAccent),
-              ),
+        if (!customized)
+          Text(
+            'RenderObject',
+            style: FlutterDeckTheme.of(context).textTheme.bodyLarge,
+          )
+        else
+          Text(
+            'Customized\nRenderObject',
+            style: FlutterDeckTheme.of(context).textTheme.bodyLarge.copyWith(color: Colors.greenAccent),
+          ),
         Gap(customized ? 162 : 208),
-        _RenderObjectFigure(),
-        _Connector(),
-        _RenderObjectFigure(),
+        const _RenderObjectFigure(),
+        const _Connector(),
+        const _RenderObjectFigure(),
       ],
     );
   }

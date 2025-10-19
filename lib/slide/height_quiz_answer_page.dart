@@ -1,32 +1,35 @@
+// 🐦 Flutter imports:
 import 'package:flutter/material.dart';
-import 'package:flutter_alliance_2025/widget/code_container.dart';
+
+// 📦 Package imports:
 import 'package:flutter_deck/flutter_deck.dart';
 import 'package:gap/gap.dart';
+
+// 🌎 Project imports:
+import 'package:flutter_alliance_2025/widget/code_container.dart';
 
 class HeightQuizAnswerPage extends StatefulWidget {
   const HeightQuizAnswerPage({super.key});
 
-  static FlutterDeckSlideWidget get slide =>
-      HeightQuizAnswerPage().withSlideConfiguration(
-        FlutterDeckSlideConfiguration(route: '/height-quiz-answer'),
-      );
+  static FlutterDeckSlideWidget get slide => const HeightQuizAnswerPage().withSlideConfiguration(
+    const FlutterDeckSlideConfiguration(route: '/height-quiz-answer'),
+  );
 
   @override
   State<HeightQuizAnswerPage> createState() => _HeightQuizAnswerPageState();
 }
 
 class _HeightQuizAnswerPageState extends State<HeightQuizAnswerPage> {
-  final _targetKey = GlobalObjectKey('target');
+  final GlobalObjectKey<State<StatefulWidget>> _targetKey = const GlobalObjectKey('target');
 
   final _heightController = TextEditingController();
   double _height = 0;
   double _startY = 0;
-  Offset _codeOffset = Offset(1200, 300);
+  Offset _codeOffset = const Offset(1200, 300);
   bool _showHint = true;
 
   void _detectOffset() {
-    final renderObject =
-        _targetKey.currentContext?.findRenderObject() as RenderBox;
+    final renderObject = _targetKey.currentContext!.findRenderObject()! as RenderBox;
     final position = renderObject.localToGlobal(Offset.zero);
     _heightController.text = (position.dy - _startY).toString();
   }
@@ -34,8 +37,7 @@ class _HeightQuizAnswerPageState extends State<HeightQuizAnswerPage> {
   @override
   Widget build(BuildContext context) {
     WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
-      final renderObject =
-          _targetKey.currentContext?.findRenderObject() as RenderBox;
+      final renderObject = _targetKey.currentContext!.findRenderObject()! as RenderBox;
       final position = renderObject.localToGlobal(Offset.zero);
       _startY = position.dy;
     });
@@ -48,7 +50,7 @@ class _HeightQuizAnswerPageState extends State<HeightQuizAnswerPage> {
             child: Column(
               mainAxisSize: MainAxisSize.min,
               children: [
-                Gap(120),
+                const Gap(120),
                 Row(
                   mainAxisSize: MainAxisSize.min,
                   children: [
@@ -57,24 +59,23 @@ class _HeightQuizAnswerPageState extends State<HeightQuizAnswerPage> {
                       child: TextField(
                         controller: _heightController,
                         decoration: InputDecoration(
-                          border: OutlineInputBorder(),
+                          border: const OutlineInputBorder(),
                           fillColor: Colors.grey.shade900,
                         ),
                         style: FlutterDeckTheme.of(context).textTheme.subtitle,
                       ),
                     ),
-                    Gap(32),
+                    const Gap(32),
                     SizedBox(
                       height: 60,
                       width: 200,
                       child: FilledButton(
                         onPressed: () {
-                          setState(
-                            () =>
-                                _height = double.parse(_heightController.text),
-                          );
+                          setState(() {
+                            _height = double.parse(_heightController.text);
+                          });
                         },
-                        child: Text('GO!'),
+                        child: const Text('GO!'),
                       ),
                     ),
                   ],
@@ -89,17 +90,16 @@ class _HeightQuizAnswerPageState extends State<HeightQuizAnswerPage> {
                         child: Center(
                           child: Column(
                             children: [
-                              Gap(240),
+                              const Gap(240),
                               AnimatedOpacity(
                                 duration: const Duration(milliseconds: 400),
                                 curve: Curves.easeInOut,
                                 opacity: _showHint ? 1 : 0,
                                 child: Text(
                                   'AnimatedTo Changes Your Moving Animations, but How?',
-                                  style: FlutterDeckTheme.of(context)
-                                      .textTheme
-                                      .title
-                                      .copyWith(color: Colors.grey.shade800),
+                                  style: FlutterDeckTheme.of(
+                                    context,
+                                  ).textTheme.title.copyWith(color: Colors.grey.shade800),
                                 ),
                               ),
                             ],
@@ -108,7 +108,7 @@ class _HeightQuizAnswerPageState extends State<HeightQuizAnswerPage> {
                       ),
                       Column(
                         children: [
-                          Gap(60),
+                          const Gap(60),
                           AnimatedContainer(
                             duration: const Duration(milliseconds: 400),
                             curve: Curves.easeInOut,
@@ -118,9 +118,7 @@ class _HeightQuizAnswerPageState extends State<HeightQuizAnswerPage> {
                             key: _targetKey,
                             child: Text(
                               'AnimatedTo Changes Your Moving Animations, but How?',
-                              style: FlutterDeckTheme.of(
-                                context,
-                              ).textTheme.title,
+                              style: FlutterDeckTheme.of(context).textTheme.title,
                             ),
                           ),
                         ],
@@ -148,11 +146,7 @@ class _HeightQuizAnswerPageState extends State<HeightQuizAnswerPage> {
                 padding: const EdgeInsets.all(32),
                 child: SizedBox(
                   width: 1000,
-                  child: _RenderObjectCode(
-                    onTap: () {
-                      _detectOffset();
-                    },
-                  ),
+                  child: _RenderObjectCode(onTap: _detectOffset),
                 ),
               ),
             ),
@@ -163,23 +157,23 @@ class _HeightQuizAnswerPageState extends State<HeightQuizAnswerPage> {
   }
 }
 
-final _code1 = '''
+const _code1 = '''
 final context = _targetKey.currentContext;
 final renderObject = context?''';
 
-final _code2 = '.findRenderObject();';
-final _code3 = '''
+const _code2 = '.findRenderObject();';
+const _code3 = '''
 
 final position = renderObject''';
 
-final _code4 = '.localToGlobal(Offset.zero);';
-final _code5 = '''
+const _code4 = '.localToGlobal(Offset.zero);';
+const _code5 = '''
 
 final height = ''';
 
-final _code6 = 'position.dy;';
+const _code6 = 'position.dy;';
 
-final _code10 = ' <- Yeah!!';
+const _code10 = ' <- Yeah!!';
 
 class _RenderObjectCode extends StatefulWidget {
   const _RenderObjectCode({required this.onTap});
@@ -208,7 +202,7 @@ class _RenderObjectCodeState extends State<_RenderObjectCode> {
         child: Text.rich(
           TextSpan(
             style: FlutterDeckTheme.of(context).textTheme.bodyLarge,
-            children: [
+            children: const [
               TextSpan(text: _code1),
               TextSpan(
                 text: _code2,

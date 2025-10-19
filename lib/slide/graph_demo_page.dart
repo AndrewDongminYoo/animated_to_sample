@@ -1,17 +1,20 @@
+// 🎯 Dart imports:
 import 'dart:async';
 import 'dart:math';
 
-import 'package:animated_to/animated_to.dart';
+// 🐦 Flutter imports:
 import 'package:flutter/material.dart';
+
+// 📦 Package imports:
+import 'package:animated_to/animated_to.dart';
 import 'package:flutter_deck/flutter_deck.dart';
 
 class GraphDemoPage extends StatefulWidget {
   const GraphDemoPage({super.key});
 
-  static FlutterDeckSlideWidget get slide =>
-      GraphDemoPage().withSlideConfiguration(
-        FlutterDeckSlideConfiguration(route: '/graph-demo'),
-      );
+  static FlutterDeckSlideWidget get slide => const GraphDemoPage().withSlideConfiguration(
+    const FlutterDeckSlideConfiguration(route: '/graph-demo'),
+  );
 
   @override
   State<GraphDemoPage> createState() => _GraphDemoPageState();
@@ -47,7 +50,7 @@ class _GraphDemoPageState extends State<GraphDemoPage> {
     _timer = null;
   }
 
-  int get _maxValue => data.map((e) => e.value).reduce((a, b) => max(a, b));
+  int get _maxValue => data.map((e) => e.value).reduce(max);
 
   @override
   Widget build(BuildContext context) {
