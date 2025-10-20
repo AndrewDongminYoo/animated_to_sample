@@ -71,15 +71,23 @@ class _Cube extends StatelessWidget {
   Widget build(BuildContext context) {
     return AnimatedTo.curve(
       globalKey: GlobalObjectKey(item.id),
-      child: DragTarget(
-        onWillAcceptWithDetails: (DragTargetDetails<Object?> details) {
+      child: DragTarget<_Item>(
+        /// Signature for determining whether the given data will be accepted by a [DragTarget], based on provided information.
+        onWillAcceptWithDetails: (DragTargetDetails<_Item?> details) {
           if (details.data == item) {
             return false;
           }
-          onAccept(details.data! as _Item);
+          onAccept(details.data!);
           return true;
         },
-        builder: (context, List<Object?> candidateData, _) {
+
+        /// Called to build the contents of this widget.
+        /// The builder can build different widgets depending on what is being dragged into this drag target.
+        /// [DragTarget.onWillAccept] or [DragTarget.onWillAcceptWithDetails] is called when a draggable enters the target. If true, then the data will appear in `candidateData`, else in `rejectedData`.
+        /// Typically the builder will check `candidateData` and `rejectedData` and build a widget that indicates the result of dropping the `candidateData` onto this target.
+        /// The `candidateData` and `rejectedData` are [List] types to support multiple simultaneous drags.
+        /// If unexpected `null` values in `candidateData` or `rejectedData`, ensure that the `data` argument of the [Draggable] is not `null`.
+        builder: (context, List<_Item?> candidateData, List<dynamic> rejectedData) {
           return Draggable(
             feedback: _CubeFace(color: item.color),
             childWhenDragging: const _CubeFace(color: Colors.transparent),

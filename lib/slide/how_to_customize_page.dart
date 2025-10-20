@@ -21,7 +21,7 @@ class _HotToCustomizePageState extends State<HotToCustomizePage> {
   int _step = 0;
   bool get _isCollapsed => _step > 3;
 
-  final _bgColor = const Color(0xfffffafa);
+  final _bgColor = const Color(0xFFFFFAFA);
   @override
   Widget build(BuildContext context) {
     return GestureDetector(

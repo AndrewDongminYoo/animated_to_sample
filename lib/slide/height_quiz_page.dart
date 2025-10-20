@@ -1,5 +1,6 @@
 // 🐦 Flutter imports:
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 // 📦 Package imports:
 import 'package:flutter_deck/flutter_deck.dart';
@@ -42,6 +43,8 @@ class _HeightQuizPageState extends State<HeightQuizPage> {
                     width: 160,
                     child: TextField(
                       controller: _heightController,
+                      keyboardType: const TextInputType.numberWithOptions(signed: true, decimal: true),
+                      inputFormatters: [FilteringTextInputFormatter.allow(RegExp(r'[\d\.-]+'))],
                       decoration: InputDecoration(
                         border: const OutlineInputBorder(),
                         fillColor: Colors.grey.shade900,

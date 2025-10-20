@@ -23,14 +23,13 @@ class GraphDemoPage extends StatefulWidget {
 class _GraphDemoPageState extends State<GraphDemoPage> {
   static const _items = 8;
 
-  final List<_Item> data = List.generate(
-    _items,
-    (index) => _Item(
+  final List<_Item> data = List.generate(_items, (index) {
+    return _Item(
       key: GlobalObjectKey(index),
       value: _items - index,
       color: Colors.primaries[index % Colors.primaries.length],
-    ),
-  );
+    );
+  });
 
   Timer? _timer;
 
